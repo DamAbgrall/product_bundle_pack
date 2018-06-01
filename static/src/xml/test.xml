@@ -1,0 +1,30 @@
+<templates id="template" xml:space="preserve">
+	<t t-extend="Orderline">
+		<t t-jquery=".info-list" t-operation="append">
+			<t t-if="line.pack != null">
+				<t t-if="line.pack.length > 0">
+					<t t-foreach="line.pack" t-as="product">
+						<li><t t-esc="product"/></li>
+					</t>
+				</t>
+			</t>
+		</t>
+	</t>
+	
+	<t t-extend="PosTicket">
+        <t t-jquery="[t-foreach=orderlines] td:first-child" t-operation="append">
+			<div>
+				<t t-if="orderline.pack != null">
+					<t t-if="orderline.pack.length > 0">
+						<t t-foreach="orderline.pack" t-as="product">
+							<li>
+								<span>- </span><t t-esc="product"/>
+							</li>
+						</t>
+					</t>
+				</t>
+			</div>
+       </t> 
+    </t>
+
+</templates>
